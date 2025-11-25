@@ -7,28 +7,27 @@ build-backend = "setuptools.build_meta"
 name = "Subfilter"
 dynamic = ["version"]
 authors = [
-  { name='Peter Clark', email='p.clark@reading.ac.uk'}
-  { name='Todd Jones'},
+  { name='Peter Clark', email='p.clark@reading.ac.uk'},
+  { name='Todd Jones', email='t.r.jones@reading.ac.uk'},
 ]
-license='MIT',
-description='python code to compute sub-filter quantities from MONC output.',
+license='MIT'
+description='python code to compute sub-filter quantities from MONC output.'
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-license = "MIT"
+
 dependencies = [
     "numpy",
-	"dask",
+    "dask",
     "scipy",
     "xarray",
     "netCDF4",
     "tqdm",
-	"loguru",
+    "loguru",
 	]
-
 
 [tool.setuptools.packages.find]
 where = ["src/"]

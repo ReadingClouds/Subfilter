@@ -374,7 +374,7 @@ def GetPSD1D(psd2D, k):
 
     # create an array of integer radial distances from the center
     Y, X = np.ogrid[0:h, 0:w]
-    r    = np.hypot(X - wc, Y - hc).astype(np.int)
+    r    = np.hypot(X - wc, Y - hc).astype(np.int64)
 
     # SUM all psd2D pixels with label 'r' for 0<=r<=wc
     # NOTE: this will miss power contributions in 'corners' r>wc
@@ -394,7 +394,7 @@ def prepare_map(fkx, fky, kp, dkh, Nmax):
     gkx=np.tile(fkx, (ny, 1))                      # x wavenumber array, repeated ny times
     gky=np.tile(np.array([fky]).T, (1, nx))        # y wavenumber array, repeated nx times
     rmap=np.sqrt(gkx**2 + gky**2,dtype='float64')  # wavenumber grid
-    rlab=(rmap*0).astype(np.int)                   # grid of labels denoting index of wavenumbers (kp)
+    rlab=(rmap*0).astype(np.int64)                   # grid of labels denoting index of wavenumbers (kp)
     kcount=kp*0                                    # to hold count of points in kp; sum(kcount)=(nx*ny)-1
     kpbar=kp*0                                     # to hold mean of wavenumber grid values at kp
     rindex=np.arange(0,Nmax-1)                     # list of labels to sum (all - to start with...)
@@ -531,7 +531,7 @@ def spectrum_ave_1D_radial_field(var, options, dx, dy, kmap=None):
     dky = 2*np.pi/L_y
     # discretize the 2D wavenumber in multiples of the maximum one-dimensional wavenumber
     dkh = np.max((dkx,dky))
-    Nmax = np.int(np.ceil(np.sqrt(2)*np.max((nx/2,ny/2))))  # maximum number of points
+    Nmax = int(np.ceil(np.sqrt(2)*np.max((nx/2,ny/2))))  # maximum number of points
     kp = (np.arange(Nmax-1)+1)*dkh                          # for eqn 18
     dkmin = np.min((dkx,dky))
     # Reliable Nyquist frequency (highest reliable wavenumber, shortest reliable wavelength)
